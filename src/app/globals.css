@@ -25,3 +25,43 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.mainCard {
+  perspective: 100px;
+  position: relative;
+  cursor: pointer;
+}
+
+.backCard {
+  transform: rotateY(-180deg); 
+}
+
+
+.backCard,
+.frontCard {
+  backface-visibility: hidden;
+  transition: transform .8s;
+  position: absolute;
+  inset: 0;
+}
+
+
+
+.clicked > .frontCard {
+  transform: rotateY(180deg); 
+}
+
+.clicked > .backCard {
+  transform: rotateY(0deg); 
+}
