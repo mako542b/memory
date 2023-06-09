@@ -1,12 +1,9 @@
 export interface ICard {
     position: number,
-    // pairNumber: number,
-    pairName: string,
+    state: 'closed' | 'opened' | 'matched' | 'closing',
+    pairName: number,
     images: string[],
     matched: boolean,
-
-}
-
-interface IBoard {
+    rnd: number,
 
 }

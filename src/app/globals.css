@@ -4,8 +4,10 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  
+  --background-start-rgb: 200, 100, 0;
+  /* --background-start-rgb: 214, 219, 220; */
+  --background-end-rgb: 100, 50, 20;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,7 +18,8 @@
   }
 }
 
-body {
+body,
+.main-container {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -38,20 +41,30 @@ body {
 
 
 .mainCard {
-  perspective: 100px;
+  perspective: 200px;
   position: relative;
   cursor: pointer;
+  transition: opacity .8s;
+  /* padding: 20px; */
+  background-color: rgb(0, 0, 0, .1);
 }
 
 .backCard {
-  transform: rotateY(-180deg); 
+  transform: rotateY(-180deg);
+}
+
+
+.frontCard {
+  background: rgb(9,9,121);
+  background: linear-gradient(42deg, rgba(9,9,121,0.4429971817828694) 6%, rgba(16,0,36,1) 26%, rgba(16,1,40,1) 30%, rgba(15,2,52,1) 38%, rgba(0,82,255,1) 100%);
+  /* border: 2px solid rgb(0, 0, 0, .7); */
 }
 
 
 .backCard,
 .frontCard {
   backface-visibility: hidden;
-  transition: transform .8s;
+  transition: transform .6s ease-out;
   position: absolute;
   inset: 0;
 }
