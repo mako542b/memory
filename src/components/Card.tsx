@@ -9,13 +9,15 @@ interface props {
     gameState: 'idle' | 'pending' | 'matching',
     setGameState: Dispatch<SetStateAction<"idle" | "pending" | "matching">>,
     setPendingCard: Dispatch<SetStateAction<ICard | null>>,
-    checkForPair: (secCard: ICard) => boolean,
+    checkForPair: (secCard: ICard) => void,
     pendingCard: ICard | null,
     board: ICard[],
     setBoard: Dispatch<SetStateAction<ICard[]>>,
+    setClicks: Dispatch<SetStateAction<number>>,
+    startPendingTimeout: (card: ICard) => void,
 }
 
-export default function Card({card, gameState, setGameState, setPendingCard, checkForPair, pendingCard, board, setBoard} : props){
+export default function Card({card, startPendingTimeout, gameState, setGameState, setPendingCard, checkForPair, pendingCard, board, setBoard, setClicks} : props){
 
     const cardRef = useRef<HTMLDivElement | null>(null)
     const [rnd, setRnd] = useState<number>(0)
@@ -33,12 +35,16 @@ export default function Card({card, gameState, setGameState, setPendingCard, che
         })
 
         if (gameState === 'idle'){
-        setGameState('pending')
-        setPendingCard(card)
+            setClicks(prev => prev + 1)
+            setGameState('pending')
+            setPendingCard(card)
+            // setTimeout(() => {
+                startPendingTimeout(card)
+            // }, 1);
         } else {
             setGameState('matching')
+            checkForPair(card)
             setTimeout(() => {
-                checkForPair(card)
             }, 1000)
         }
             
@@ -51,7 +57,6 @@ export default function Card({card, gameState, setGameState, setPendingCard, che
             return null;
         }
 
-        
         if(card.state === 'opened'){
             setTimeout(() => {
                 cardRef?.current?.classList.add('clicked')
@@ -73,7 +78,7 @@ export default function Card({card, gameState, setGameState, setPendingCard, che
 
     return (
         <div 
-            className={`w-16 aspect-[3/4] rounded-md grid place-content-center mainCard overflow-hidden`} 
+            className={`w-12 xs:w-16 sm:w-20 aspect-[3/4] rounded-md grid place-content-center mainCard overflow-hidden`} 
             ref={cardRef} 
             onClick={handleClick}
             

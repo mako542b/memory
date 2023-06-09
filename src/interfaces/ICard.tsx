@@ -5,5 +5,5 @@ export interface ICard {
     images: string[],
     matched: boolean,
     rnd: number,
-
+    key: string,
 }

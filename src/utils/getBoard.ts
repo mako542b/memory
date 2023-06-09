@@ -1,6 +1,7 @@
 import { ICard } from "@/interfaces/ICard";
 import { getRandom } from "./getRandom";
 import imageSources from "./imageSources";
+import idGenerator from "./idGenerator"
 
 
 
@@ -23,6 +24,7 @@ export function getBoard(cardsQuantity: number){
             matched: false,
             state: 'closed',
             rnd: 0,
+            key: idGenerator(),
         }
         let pair2 : ICard = {
             images: url,
@@ -31,6 +33,7 @@ export function getBoard(cardsQuantity: number){
             matched: false,
             state: 'closed',
             rnd: 0,
+            key: idGenerator(),
         }
         newBoard.push(pair1)
         newBoard.push(pair2)
