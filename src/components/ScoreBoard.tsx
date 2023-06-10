@@ -5,7 +5,7 @@ interface props {
     scored: string,
 }
 
-export default function({clicks, scored}: props) {
+export default function ScoreBoard({clicks, scored}: props) {
 
     return(
         <div className="grid gap-3 text-xl place-content-center text-white font-mono md:pb-3">

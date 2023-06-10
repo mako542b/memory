@@ -4,7 +4,7 @@ interface props {
     handleClick: (level: "newbie" | "intermediate" | "master") => void
 }
 
-export default function({handleClick} : props) {
+export default function ChooseLevel({handleClick} : props) {
 
 
 
