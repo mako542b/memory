@@ -116,10 +116,10 @@ export default function Board({setLevel, level, setBoard, board } : props){
                 <div className="grid place-content-center text-white font-mono text-lg">
                     <p>{formatTime(timer)}</p>
                 </div>
-                <ScoreBoard clicks={clicks} scored={`${matchedPairs} / ${numOfPairs}`}/>
+                <ScoreBoard clicks={clicks} scored={`${matchedPairs}/${numOfPairs}`}/>
                 <div className="grid gap-3 place-content-center">
-                    <button onClick={handleReset} className="rounded-md outline outline-1 outline-white text-white tracking-wider uppercase font-semibold py-1 px-2 md:py-2 md:px-3 hover:opacity-60">Reset</button>
-                    <button onClick={handleGoBack} className="rounded-md outline outline-1 outline-white text-white tracking-wider uppercase font-semibold py-1 px-2 md:py-2 md:px-3 hover:opacity-60">Go back</button>
+                    <button onClick={handleReset} className="rounded-md text-sm md:text-lg outline outline-1 outline-white text-white tracking-wider uppercase font-semibold py-1 px-2 md:py-2 md:px-3 hover:opacity-60">Reset</button>
+                    <button onClick={handleGoBack} className="rounded-md max-w-[6ch] text-sm md:text-lg outline outline-1 outline-white text-white tracking-wider uppercase font-semibold py-1 px-2 md:py-2 md:px-3 hover:opacity-60">Go back</button>
                 </div>
                 {gameState === 'finnished' ? (
                     <h1 className="text-3xl text-white font-mono uppercase">Congratulations</h1>
