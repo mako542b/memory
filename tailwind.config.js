@@ -14,10 +14,12 @@ module.exports = {
       },
       screens: {
         'xs': '320px',
+        'xsm': '410px',
         // => @media (min-width: 992px) { ... }
       },
       width: {
-        'minMax' : 'min(90%, 30rem)'
+        'minMax' : 'min(90%, 30rem)',
+        'clamp' : 'clamp(48px,calc(3rem+((1vw-2.5px)*20)),80px);'
       }
     },
   },

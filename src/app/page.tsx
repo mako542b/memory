@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import Board from '@/components/Board'
 import ChooseLevel from '@/components/ChooseLevel'
 import { useState } from 'react'

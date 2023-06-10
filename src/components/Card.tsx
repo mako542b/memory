@@ -6,8 +6,8 @@ import { getRandom } from "@/utils/getRandom"
 
 interface props {
     card: ICard,
-    gameState: 'idle' | 'pending' | 'matching',
-    setGameState: Dispatch<SetStateAction<"idle" | "pending" | "matching">>,
+    gameState: 'idle' | 'pending' | 'matching' | 'finnished' | 'starting',
+    setGameState: Dispatch<SetStateAction<"idle" | "pending" | "matching" | "finnished" | 'starting'>>,
     setPendingCard: Dispatch<SetStateAction<ICard | null>>,
     checkForPair: (secCard: ICard) => void,
     pendingCard: ICard | null,
@@ -15,9 +15,10 @@ interface props {
     setBoard: Dispatch<SetStateAction<ICard[]>>,
     setClicks: Dispatch<SetStateAction<number>>,
     startPendingTimeout: (card: ICard) => void,
+    startTimer: () => void,
 }
 
-export default function Card({card, startPendingTimeout, gameState, setGameState, setPendingCard, checkForPair, pendingCard, board, setBoard, setClicks} : props){
+export default function Card({card, startTimer, startPendingTimeout, gameState, setGameState, setPendingCard, checkForPair, pendingCard, board, setBoard, setClicks} : props){
 
     const cardRef = useRef<HTMLDivElement | null>(null)
     const [rnd, setRnd] = useState<number>(0)
@@ -34,13 +35,12 @@ export default function Card({card, startPendingTimeout, gameState, setGameState
             return newBoard
         })
 
-        if (gameState === 'idle'){
+        if (gameState === 'idle' || gameState === 'starting'){
+            if(gameState === 'starting') startTimer()
             setClicks(prev => prev + 1)
             setGameState('pending')
             setPendingCard(card)
-            // setTimeout(() => {
-                startPendingTimeout(card)
-            // }, 1);
+            startPendingTimeout(card)
         } else {
             setGameState('matching')
             checkForPair(card)
@@ -78,7 +78,7 @@ export default function Card({card, startPendingTimeout, gameState, setGameState
 
     return (
         <div 
-            className={`w-12 xs:w-16 sm:w-20 aspect-[3/4] rounded-md grid place-content-center mainCard overflow-hidden`} 
+            className={`aspect-[3/4] rounded-md grid place-content-center mainCard overflow-hidden`}
             ref={cardRef} 
             onClick={handleClick}
             
