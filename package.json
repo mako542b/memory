@@ -1,7 +1,7 @@
 {
   "name": "memory_game_next",
   "version": "0.1.0",
-  "homepage": "https://mako542b.github.io/memory",
+  "homepage": "https://mako542b.github.io/memory-game",
   "private": true,
   "scripts": {
     "dev": "next dev",
